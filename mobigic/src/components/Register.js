@@ -6,9 +6,11 @@ import '../App.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
+
 
 function Register() {
+   const history = useNavigate();
   const [user, setUser] = useState({
     email: '',
     username: '',
@@ -37,6 +39,7 @@ function Register() {
       const newUser = userCredential.user;
       console.log('User created:', newUser);
       window.alert('Successfully created user');
+      history('/login');
   
       // Assuming you have the user's UID available in user.uid
       set(ref(db, 'users/' + newUser.uid), {
